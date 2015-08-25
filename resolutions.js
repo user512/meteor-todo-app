@@ -15,13 +15,16 @@ if (Meteor.isClient) {
         createdAt: new Date()
       });
 
-      // event.target.title.value = "";
+      event.target.title.value = "";
 
       return false;
     }
   });
 
   Template.todo.events({
+    'click .toggle-checked': function() {
+      Todos.update(this._id, {$set: {checked: !this.checked}});
+    },
     'click .delete': function() {
       Todos.remove(this._id);
     }
