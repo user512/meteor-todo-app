@@ -3,9 +3,14 @@ Todos = new Mongo.Collection('todos');
 if (Meteor.isClient) {
   Template.body.helpers({
     todos: function() {
-      return Todos.find();
+      if (Session.get('hideFinished')) {
+        return Todos.find({checked: {$ne: true}});
+      } else {
+        return Todos.find();
+      }
     }
   });
+
   Template.body.events({
     'submit .new-todo': function(event) {
       var title = event.target.title.value;
@@ -18,6 +23,9 @@ if (Meteor.isClient) {
       event.target.title.value = "";
 
       return false;
+    },
+    'change .hide-finished': function(event) {
+      Session.set('hideFinished', event.target.checked);
     }
   });
 

@@ -7,6 +7,10 @@
     <header>
       <h1>To Do List</h1>
 
+        <label class="hide-finished">
+          <input type="checkbox" checked="{{hideFinished}}">
+          Hide Finished Task
+        </label>
 
       <form class="new-todo">
         <input type="text" name="title" placeholder="A new Todo">
@@ -24,7 +28,7 @@
 </body>
 
 <template name="todo">
-  <li>
+  <li class="{{#if checked}}checked{{/if}}">
     <input type="checkbox" checked="{{checked}}" class="toggle-checked">
     <span class="text">{{title}}</span>
     <button class="delete">Remove</button>
