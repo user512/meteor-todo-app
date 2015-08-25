@@ -17,13 +17,13 @@ if (Meteor.isClient) {
 
   Template.body.events({
     'submit .new-todo': function(event) {
+      event.preventDefault();
       var title = event.target.title.value;
-
-      Meteor.call("addTodo", title);
-
+      if (title[0].value !== null){
+        Meteor.call("addTodo", title);
+      }
       event.target.title.value = "";
-
-      return false;
+      // return false;   //Can use preventDefault() or return false to prevent submit
     },
     'change .hide-finished': function(event) {
       Session.set('hideFinished', event.target.checked);
