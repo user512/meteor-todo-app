@@ -21,7 +21,7 @@ if (Meteor.isClient) {
 
       Meteor.call("addTodo", title);
 
-      title = "";
+      event.target.title.value = "";
 
       return false;
     },
