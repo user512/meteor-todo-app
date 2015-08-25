@@ -17,10 +17,7 @@ if (Meteor.isClient) {
     'submit .new-todo': function(event) {
       var title = event.target.title.value;
 
-      Todos.insert({
-        title: title,
-        createdAt: new Date()
-      });
+      Meteor.call("addTodo", title);
 
       event.target.title.value = "";
 
@@ -33,10 +30,10 @@ if (Meteor.isClient) {
 
   Template.todo.events({
     'click .toggle-checked': function() {
-      Todos.update(this._id, {$set: {checked: !this.checked}});
+      Meteor.call("updateTodo", this._id, !this.checked);
     },
     'click .delete': function() {
-      Todos.remove(this._id);
+      Meteor.call("deleteTodo",this._id);
     }
   });
 
@@ -51,3 +48,19 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+
+Meteor.methods({
+  addTodo: function(title){
+    Todos.insert({
+        title: title,
+        createdAt: new Date()
+    });
+  },
+  updateTodo: function(id, checked) {
+    Todos.update(id, {$set: {checked: checked}});
+  },
+  deleteTodo: function(id){
+    Todos.remove(id);
+  }
+});

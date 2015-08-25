@@ -31,8 +31,12 @@
 
 <template name="todo">
   <li class="{{#if checked}}checked{{/if}}">
+    {{#if currentUser}}
     <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+    {{/if}}
     <span class="text">{{title}}</span>
+    {{#if currentUser}}
     <button class="delete">Remove</button>
+    {{/if}}
   </li>
 </template>
