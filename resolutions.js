@@ -1,3 +1,5 @@
+
+
 Todos = new Mongo.Collection('todos');
 
 if (Meteor.isClient) {
@@ -37,6 +39,11 @@ if (Meteor.isClient) {
       Todos.remove(this._id);
     }
   });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  });
+
 }
 
 if (Meteor.isServer) {

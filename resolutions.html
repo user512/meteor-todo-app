@@ -6,17 +6,19 @@
   <div class="container">
     <header>
       <h1>To Do List</h1>
+      {{> loginButtons}}
 
         <label class="hide-finished">
           <input type="checkbox" checked="{{hideFinished}}">
           Hide Finished Task
         </label>
-
+      {{#if currentUser}}
       <form class="new-todo">
         <input type="text" name="title" placeholder="A new Todo">
-        <input type="submit" value="Submit">
+        <!-- <input type="submit" value="Submit"> -->
 
       </form>
+      {{/if}}
 
     </header>
     <ul>

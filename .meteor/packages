@@ -7,3 +7,6 @@
 meteor-platform
 autopublish
 insecure
+mquandalle:stylus
+accounts-password
+accounts-ui
