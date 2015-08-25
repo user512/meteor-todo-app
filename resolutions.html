@@ -1,5 +1,6 @@
 <head>
   <title>To Do List</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 </head>
 
 <body>
@@ -31,11 +32,19 @@
 
 <template name="todo">
   <li class="{{#if checked}}checked{{/if}}">
-    {{#if currentUser}}
     <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+    {{#if isOwner}}
+      <button class="toggle-private">
+        {{#if private}}
+          Private
+        {{else}}
+          Public
+        {{/if}}
+      </button>
     {{/if}}
     <span class="text">{{title}}</span>
-    {{#if currentUser}}
+
+    {{#if isOwner}}
     <button class="delete">Remove</button>
     {{/if}}
   </li>
