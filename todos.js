@@ -44,7 +44,7 @@ if (Meteor.isServer) {
     return Todos.find({  //This is Mongo DB query
       $or: [
         { private: {$ne: true} },  //$ne means not equal in MongoDB
-        { owner: this.userId }
+        { owner: this.userId } // user can use their own task
       ]
     });
   });
